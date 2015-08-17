@@ -25,7 +25,6 @@ public class GameTest {
 
         //then
         assertThat(game.score()).isEqualTo(5); // we try to get score for incomplete frame, should we allow for it?
-        assertThat(game.getCurrentFrame()).isEqualTo(1);
     }
 
     @Test
@@ -35,8 +34,7 @@ public class GameTest {
         game.add(4);
 
         //then
-        assertThat(game.score()).isEqualTo(9);
-        assertThat(game.getCurrentFrame()).isEqualTo(2);
+        assertThat(game.score()).isEqualTo(9);;
     }
 
     @Test
@@ -51,7 +49,6 @@ public class GameTest {
         assertThat(game.score()).isEqualTo(18);
         assertThat(game.scoreForFrame(1)).isEqualTo(9);
         assertThat(game.scoreForFrame(2)).isEqualTo(18);
-        assertThat(game.getCurrentFrame()).isEqualTo(3);
     }
 
     @Test
@@ -63,7 +60,6 @@ public class GameTest {
 
         //then
         assertThat(game.scoreForFrame(1)).isEqualTo(13);
-        assertThat(game.getCurrentFrame()).isEqualTo(2);
     }
 
     @Test
@@ -90,7 +86,6 @@ public class GameTest {
         //then
         assertThat(game.scoreForFrame(1)).isEqualTo(19);
         assertThat(game.score()).isEqualTo(28);
-        assertThat(game.getCurrentFrame()).isEqualTo(3);
     }
 
     @Test
@@ -100,7 +95,6 @@ public class GameTest {
         }
 
         assertThat(game.score()).isEqualTo(300);
-        assertThat(game.getCurrentFrame()).isEqualTo(11);
     }
 
     @Test
