@@ -14,30 +14,41 @@ public class Game {
 
     public void add(int pins) {
         gameThrows[currentThrow++] = pins;
-        adjustCurrentFrame();
+        adjustCurrentFrame(pins);
     }
 
-    private void adjustCurrentFrame() {
+    private void adjustCurrentFrame(int pins) {
         if (firstThrowInFrame) {
-            firstThrowInFrame = false;
+            if (pins == 10) {
+                currentFrame++;
+            }
+            else {
+                firstThrowInFrame = false;
+            }
         } else {
             firstThrowInFrame = true;
             currentFrame++;
         }
+        currentFrame = Math.min(11, currentFrame);
     }
 
     public int scoreForFrame(int frame) {
         int score = 0;
         int ball = 0;
         for (int currentFrame = 0; currentFrame < frame; currentFrame++) {
-            int firstTrowScore = gameThrows[ball++];
-            int secondThrowScore = gameThrows[ball++];
-            int frameScore = firstTrowScore + secondThrowScore;
-
-            if (frameScore == 10) {
-                score += frameScore + gameThrows[ball];
+            int firstThrowScore = gameThrows[ball++];
+            //strike
+            if (firstThrowScore == 10) {
+                score += 10 + gameThrows[ball] + gameThrows[ball + 1];
             } else {
-                score += frameScore;
+                int secondThrowScore = gameThrows[ball++];
+                int frameScore = firstThrowScore + secondThrowScore;
+                //spare
+                if (frameScore == 10) {
+                    score += frameScore + gameThrows[ball];
+                } else {
+                    score += frameScore;
+                }
             }
         }
         return score;
